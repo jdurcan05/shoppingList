@@ -46,11 +46,18 @@
                                                             <rect key="frame" x="196" y="0.0" width="96" height="42"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="filled" title="Bought"/>
+                                                            <connections>
+                                                                <action selector="boughtButton:" destination="wYA-fR-OwO" eventType="touchUpInside" id="GSQ-D6-Xk8"/>
+                                                                <action selector="buyButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8OQ-gL-OMw"/>
+                                                            </connections>
                                                         </button>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GfX-5Q-pdm">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GfX-5Q-pdm">
                                                             <rect key="frame" x="294" y="0.0" width="96" height="42"/>
                                                         </imageView>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="42" id="fwg-Uc-Kqf"/>
+                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -78,6 +85,9 @@
                                     <segment title="Grains"/>
                                     <segment title="Freezer"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentedControllerChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="Z8s-ZS-nle"/>
+                                </connections>
                             </segmentedControl>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="My funniest joke" id="ALX-aX-Ma4">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="133"/>

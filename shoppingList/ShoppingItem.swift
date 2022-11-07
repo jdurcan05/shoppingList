@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-class ShoppingItem {
+class ShoppingItem: Codable {
     
     var title: String
-    enum area{
-        case deli, produce, grains, freezer
+    enum area: String, Codable {
+        case deli = "Deli", produce = "Produce", grains = "Grains", freezer = "Freezer"
     }
     var place: ShoppingItem.area
     var bought: Bool

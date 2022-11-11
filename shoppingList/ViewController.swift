@@ -27,7 +27,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         myTableView.dataSource = self
         myTableView.delegate = self
-    }
+        if let items = UserDefaults.standard.data(forKey: "myList") {
+            let decoder = JSONDecoder()
+            if let decoded = try? decoder.decode([ShoppingItem].self, from: items) {
+                AppData.shoppingList = decoded
+            }
+        }
+        }
+        
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return AppData.shoppingList.count
@@ -42,7 +49,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if editingStyle == .delete {
             AppData.shoppingList.remove(at: indexPath.row)
             if let encoded = try? encoder.encode(AppData.shoppingList) {
-                UserDefaults.standard.set(encoded, forKey: "myMovies")}
+                UserDefaults.standard.set(encoded, forKey: "myList")
+                print("save")
+            }
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
@@ -57,6 +66,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             print("\(i) \(AppData.shoppingList[i].bought)")
         }
         myTableView.reloadData()
+        if let encoded = try? encoder.encode(AppData.shoppingList) {
+            UserDefaults.standard.set(encoded, forKey: "myList")
+            print("save")
+        }
         
     }
     
@@ -92,6 +105,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if add{
                 AppData.shoppingList.append(ShoppingItem(title: texter, place: sectionChoice))
                 myTableView.reloadData()
+                if let encoded = try? encoder.encode(AppData.shoppingList) {
+                    UserDefaults.standard.set(encoded, forKey: "myList")
+                    print("save")
+                }
                 print("add")
                 for i in 0..<AppData.shoppingList.count{
                     print("\(i) + \(AppData.shoppingList[i].bought)")

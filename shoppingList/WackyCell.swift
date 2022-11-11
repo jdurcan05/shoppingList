@@ -18,6 +18,7 @@ class WackyCell: UITableViewCell{
     @IBOutlet weak var checkMarkOutlet: UIImageView!
     
     func configure (inShop: ShoppingItem, inCounter: Int){
+        checkMarkOutlet.image = nil
         shopper = inShop
         itemOutlet.text = shopper!.title
         areaOutlet.text = "\(shopper!.place)"
@@ -31,6 +32,12 @@ class WackyCell: UITableViewCell{
 
     
     @IBAction func boughtButton(_ sender: UIButton) {
-        AppData.shoppingList[counter!].bought = true
+        if !AppData.shoppingList[counter!].bought{
+            AppData.shoppingList[counter!].bought = true
+        }
+        else {
+            AppData.shoppingList[counter!].bought = false
+        }
+       
     }
 }
